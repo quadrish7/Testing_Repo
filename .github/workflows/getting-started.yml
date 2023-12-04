@@ -1,0 +1,16 @@
+name: Getting Started with Github Actions
+run-name: ${{ github.actor }} is testing out Github Actions
+jobs:
+  Explore-Github-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "The Job was automatically triggered by ${{ github.event_name }} event"
+      - run: echo "The job is running on ${{ runner.os }}"
+      - run: echo "The current branch is ${{ github.ref }} and the repo is ${{ github.repository }}"
+      - name: Checking out Git Repository
+        uses: actions/checkout@v4
+      - name: List all files in the github repository ${{ github.repository }}
+        run: |
+          ls -la ${{ github.workspace }}
+      - run: echo "The Job status is ${{ job.status }}"
+on: [ push]

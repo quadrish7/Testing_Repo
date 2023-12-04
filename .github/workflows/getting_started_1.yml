@@ -2,6 +2,10 @@ name: "Workflow Dispatch Github Action Workflow"
 on:
   workflow_dispatch:
     inputs:
+      print_tags:
+        description: "This Prints Tags to STDOUT"
+        type: boolean
+        required: true
       logLevel:
         description: "Log Level"
         type: choice
@@ -12,9 +16,9 @@ on:
         required: true
         default: 'warning'
       tags:
-        description: "Test Sceneraio Tags"
+        description: "Test scenario Tags"
         required: true
-        type: boolean
+        type: string
       environment:
         description: "Environment to run Test Against"
         type: environment
@@ -31,5 +35,10 @@ jobs:
           LEVEL: ${{ inputs.logLevel }}
           TAGS: ${{ inputs.tags }}
           ENVIRONMENT: ${{ inputs.environment }}
-          
+  print-if-tags:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.print_tags }}
+    steps:
+      - run: |
+          echo "The Tags are ${{ inputs.tags }}"
 

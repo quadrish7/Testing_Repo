@@ -1,0 +1,35 @@
+name: "Workflow Dispatch Github Action Workflow"
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log Level"
+        type: choice
+        options:
+          - 'warning'
+          - 'info'
+          - 'debug'
+        required: true
+        default: 'warning'
+      tags:
+        description: "Test Sceneraio Tags"
+        required: true
+        type: boolean
+      environment:
+        description: "Environment to run Test Against"
+        type: environment
+        required: true
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Log Level: $LEVEL"
+          echo "Tags: $TAGS"
+          echo "Environment: $ENVIRONMENT"
+        env:
+          LEVEL: ${{ inputs.logLevel }}
+          TAGS: ${{ inputs.tags }}
+          ENVIRONMENT: ${{ inputs.environment }}
+          
+

@@ -1,7 +1,7 @@
 name: "Github Action to Build and Deploy the ncgus-tracker"
 on: workflow_dispatch
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout Git Repository"
@@ -14,10 +14,6 @@ jobs:
         run: |
           npm install
           gulp build --env prod
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: "List files after Build"
         run: | 
           ls -l

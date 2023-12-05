@@ -4,6 +4,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: "Checking AWS"
+        run: |
+          aws s3 help
       - name: "Checkout Repository"
         uses: actions/checkout@v4
       - name: "Setup Node"

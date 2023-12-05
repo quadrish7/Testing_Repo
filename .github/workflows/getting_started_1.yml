@@ -1,27 +1,5 @@
 name: "Workflow Dispatch Github Action Workflow"
 on: workflow_dispatch
-#    inputs:
-#      print_tags:
-#        description: "This Prints Tags to STDOUT"
-#        type: boolean
-#        required: true
-#      logLevel:
-#        description: "Log Level"
-#        type: choice
-#        options:
-#          - 'warning'
-#          - 'info'
-#          - 'debug'
-#        required: true
-#        default: 'warning'
-#      tags:
-#        description: "Test scenario Tags"
-#        required: true
-#        type: string
-#      environment:
-#        description: "Environment to run Test Against"
-#        type: environment
-#        required: true
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,7 +10,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 16
-          architecture: ${{ runner.arch }}
       - name: "Configure AWS Credentials"
         uses:  aws-actions/configure-aws-credentials@v4
         with:
@@ -44,22 +21,4 @@ jobs:
           do
           aws cloudfront get-distribution --id $i 
           done
-
-#  log-the-inputs:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - run: |
-#          echo "Log Level: $LEVEL"
-#          echo "Tags: $TAGS"
-#          echo "Environment: $ENVIRONMENT"
-#        env:
-#          LEVEL: ${{ inputs.logLevel }}
-#          TAGS: ${{ inputs.tags }}
-#          ENVIRONMENT: ${{ inputs.environment }}
-#  print-if-tags:
-#    runs-on: ubuntu-latest
-#    if: ${{ inputs.print_tags }}
-#    steps:
-#      - run: |
-#          echo "The Tags are ${{ inputs.tags }}"
 

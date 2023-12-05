@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ncg.js test page</title>
+</head>
+<body>
+<a href="#" onclick="javascript:optout();">Opt-out</a><br>
+<a href="#" onclick="javascript:optin();">Opt-in</a><br>
+<a href="#" onclick="javascript:check();">Check opt-out</a><br>
+<a href="#" onclick="javascript:deleteMatchid();">Delete Matchid</a><br>
+<script type="text/javascript">
+	ncg_data = window.ncg_data || {};
+	ncg_data.events = ncg_data.events || [];
+	var optout = function() {
+		console.log('Matchid: ',localStorage._ncg_matchid_);
+		ncg_data.events.push(['ready', function(data) {
+			this.optOut();
+		}]);
+	};
+	var optin = function() {
+		console.log('Matchid: ',localStorage._ncg_matchid_);
+		ncg_data.events.push(['ready', function(data) {
+			this.optIn();
+		}]);
+	};
+	var check = function() {
+		console.log('Matchid: ',localStorage._ncg_matchid_);
+		ncg_data.events.push(['ready', function(data) {
+			var pref = this.checkOptOutStatus(function(ret) {
+				alert(JSON.stringify(ret));
+			});
+			
+		}]);
+	};
+	var deleteMatchid = function() {
+		// console.log('HERE');
+		delete(localStorage._ncg_matchid_);
+	};
+	// Load script. This should ALWAYS happen AFTER the ncg_data object is defined.
+    (function() {
+        var head = document.head || document.getElementsByTagName('head')[0],
+            scr = document.createElement('script')
+            scr.async = true;
+            scr.src = '<%= testbase.base %><%= testbase.path %>/ncg.js';
+            head.appendChild(scr);
+    }());
+</script>
+</body>
+</html>

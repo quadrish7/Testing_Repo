@@ -1,0 +1,45 @@
+{
+    "prod": {
+        "tag": {
+            "base": "//us.tags.newscgp.com",
+            "path": "/prod/ncg"
+        },
+        "collector": "v2.pixel.newscgp.com",
+        "bucket": "ncgus-tags-resources",
+        "region": "us-east-1",
+        "cloudfrontID": "ETLQHLEBGIKKR",
+        "gdprEndpoint":"tags.news.com.au/prod/data-esi/top/gdpr_user_check.esi"
+    },
+    "uat": {
+        "tag": {
+            "base": "//us.tags.newscgp.com",
+            "path": "/uat/ncg"
+        },
+        "collector": "collector.uat.newscgp.com",
+        "bucket": "ncgus-tags-resources",
+        "region": "us-east-1",
+        "cloudfrontID": "ETLQHLEBGIKKR",
+        "gdprEndpoint":"tags.news.com.au/uat/data-esi/top/gdpr_user_check.esi"
+    },
+    "sit": {
+        "tag": {
+            "base": "//us.tags.newscgp.com",
+            "path": "/sit/ncg"
+        },
+        "collector": "collector.sit.newscgp.com",
+        "bucket": "ncgus-tags-resources",
+        "region": "us-east-1",
+        "cloudfrontID": "ETLQHLEBGIKKR",
+        "gdprEndpoint":"tags.news.com.au/sit/data-esi/top/gdpr_user_check.esi"
+    },
+    "dev": {
+        "tag": {
+            "base": "//us.tags.newscgp.com",
+            "path": "/prod/ncg"
+        },
+        "collector": "v2.pixel.newscgp.com",
+        "bucket": "ncgus-tags-resources",
+        "region": "us-east-1",
+        "gdprEndpoint":"tags.news.com.au/sit/data-esi/top/gdpr_user_check.esi"
+    }
+}

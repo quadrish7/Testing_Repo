@@ -1,1 +1,12 @@
+.akamaipass
+.ftppass
+node_modules
+dist
+tdist
+tmp
+s3.json
+npm-debug.log
+*.txt
+deploy-config-override.json
+coverage
 .idea/

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ncg.js test page</title>
+    <meta property="article:published_time" content="2016-10-04" />
+    <meta property="article:author" content="Dan Ivascyn" />
+    <meta property="article:section" content="Asset Management" />
+    <meta name="page.section" content="FNO_assetmanagement" />
+    <meta name="page.category" content="Article" />
+    <meta name="page.name" content="FNO_The future of bond markets – by Dan Ivascyn_4076290527" />
+    <meta name="page.subsection" content="assetmanagement" />
+    <meta name="page.access" content="free" />
+</head>
+
+<body>
+    <script type="text/javascript">
+    ncg_data = window.ncg_data || {};
+    ncg_data.events = ncg_data.events || [];
+    ncg_data.events.push(['cookie-sync', function(data) {
+        console.log('cookie-sync', data);
+    }]);
+    // Load script. This should ALWAYS happen AFTER the ncg_data object is defined.
+    (function() {
+        var head = document.head || document.getElementsByTagName('head')[0],
+            scr = document.createElement('script')
+        scr.async = true;
+        scr.src = '<%= testbase.base %><%= testbase.path %>/ncg.js';
+        head.appendChild(scr);
+    }());
+    </script>
+</body>
+
+</html>

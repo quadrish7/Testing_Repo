@@ -1,0 +1,5 @@
+<% for(var name in metaObj) { %>
+	<% if(metaObj[name]) { %>
+		<meta name="<%= name %>" content="<%= metaObj[name] %>" />
+	<% } %>
+<% } %>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ncg.js test page</title>
+</head>
+<body>
+
+    <div class="container">
+        <a href="?track=1" class="tracked">Link 1 tracked</a><br>
+        <a href="?track=2" class="tracked">Link 2 tracked </a><br>
+        <a href="?track=3">Link 3 not tracked</a><br>
+    </div>
+    <button onclick="addLink()">Add link</button><br>
+    <a href="?track=6" class="tracked">Outside container </a><br>
+
+
+<script type="text/javascript">
+    ncg_data = window.ncg_data || {};
+    ncg_data.link_tracker_selector = 'a.tracked';
+    ncg_data.link_tracker_watch_selector = 'div.container';
+    // Load script. This should ALWAYS happen AFTER the ncg_data object is defined.
+    (function() {
+        var head = document.head || document.getElementsByTagName('head')[0],
+            scr = document.createElement('script');
+            scr.async = true;
+            scr.src = '<%= testbase.base %><%= testbase.path %>/ncg.js';
+            head.appendChild(scr);
+    }());
+
+    var addLink = function () {
+        var element = document.querySelectorAll(ncg_data.link_tracker_watch_selector)[0];
+        element.appendChild(document.createElement('br'));
+        var trackedLink = document.createElement('a');
+        var trackedLinkText = document.createTextNode("new link will be tracked");
+        trackedLink.appendChild(trackedLinkText);
+        trackedLink.title = "new link will be tracked";
+        trackedLink.href = "?track=4";
+        trackedLink.className = "tracked";
+        element.appendChild(trackedLink);
+
+        element.appendChild(document.createElement('br'));
+        var unTrackedLink = document.createElement('a');
+        var unTrackedLinkText = document.createTextNode("new link will not be tracked");
+        unTrackedLink.appendChild(unTrackedLinkText);
+        unTrackedLink.title = "new link will not be tracked";
+        unTrackedLink.href = "?track=5";
+        element.appendChild(unTrackedLink);
+
+        document.body.appendChild(document.createElement('br'));
+        var unTrackedLink = document.createElement('a');
+        var unTrackedLinkText = document.createTextNode("new link out side container");
+        unTrackedLink.appendChild(unTrackedLinkText);
+        unTrackedLink.title = "new link out side container";
+        unTrackedLink.href = "?track=7";
+        trackedLink.className = "tracked";
+        document.body.appendChild(unTrackedLink);
+    }
+</script>
+</body>
+</html>

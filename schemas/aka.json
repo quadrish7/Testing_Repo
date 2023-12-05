@@ -1,0 +1,14 @@
+{
+    "user_id": "my logged in id",
+    "user_provider": "my id provider",
+    "user_memtype": "subscriber",
+    "user_newsletter_id": "my newsletter id",
+    "user_newsletter_provider": "my newsletter provider",
+    "browser_dmp_id": "my dmp id",
+    "browser_dmp_provider": "my dmp provider",
+    "browser_ads_ppid": "my ppid",
+    "browser_ads_provider": "my ads platform",
+    "browser_analytics_id": "my analytics id",
+    "browser_analytics_provider": "my analytics provider",
+    "browser_ncg_id": "my ncg id"
+}

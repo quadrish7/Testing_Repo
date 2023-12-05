@@ -1,0 +1,65 @@
+name: "Github Action to Build and Deploy the ncgus-tracker"
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Git Repository"
+        uses: actions/checkout@v4
+      - name: "Setup Node"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+      - name: "Build tacker file"
+        run: |
+          npm install
+          gulp build --env prod
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: "List files after Build"
+        run: | 
+          ls -l
+          ls -l dist/
+      - name: "List S3 Buckets"
+        run: |
+          aws s3 ls
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: "Get Cloudfront Distributions"
+        run: |
+          echo ${{ secrets.CF_DISTRIBUTIONS }} | while read i
+          do
+          aws cloudfront get-distribution --id ${i} 
+          done
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+#      - name: "Copying existing ncg.js file to backup folder"
+#        run: |
+#          aws s3 ${{ secrets.S3_BUCKET }}/prod/ncg/ncg.js ${{ secrets.S3_BUCKET }}/backup/ncg.js-build-$(date +%y-%m-%d)
+#        env:
+#          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#
+#      - name: "Copying ncg.js to prod folder"
+#        run: |
+#          aws s3 cp dist/ncg.js ${{ secrets.S3_BUCKET }}/prod/ncg/
+#        env:
+#          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#      - name: "Invalidating the CloudFront"
+#        run: |
+#          echo ${{ secrets.CF_DISTRIBUTIONS }} | while read i
+#          do
+#          aws cloudfront create-invalidation --distribution-id ${i} --paths '/prod/ncg/*'
+#          done
+#        env:
+#          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      
+

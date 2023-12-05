@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ncg.js test page</title>
+</head>
+
+<body>
+    <script>
+        var adobeDTM = {"listing":{"productType":"Enhanced","managementID":"4111","listingType":"shn","communityID":"563707","city":"chicago","state":"il","zip":"60634","careTypes":"55+ communities, independent living, assisted living"},"pageType":"ldp"};
+    </script>
+    <script type="text/javascript">
+    ncg_data = window.ncg_data || {};
+    ncg_data.events = ncg_data.events || [];
+    ncg_data.events.push(['cookie-sync', function(data) {
+        console.log('cookie-sync', data);
+    }]);
+    // Load script. This should ALWAYS happen AFTER the ncg_data object is defined.
+    (function() {
+        var head = document.head || document.getElementsByTagName('head')[0],
+            scr = document.createElement('script')
+        scr.async = true;
+        scr.src = '<%= testbase.base %><%= testbase.path %>/ncg.js';
+        head.appendChild(scr);
+    }());
+    </script>
+</body>
+
+</html>

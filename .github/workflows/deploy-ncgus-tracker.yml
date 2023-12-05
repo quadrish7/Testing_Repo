@@ -1,7 +1,7 @@
 name: "Github Action to Build and Deploy the ncgus-tracker"
 on: workflow_dispatch
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout Git Repository"
@@ -14,10 +14,25 @@ jobs:
         run: |
           npm install
           gulp build --env prod
+      - name: "Upload the artifact"
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Download the artifact"
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+
       - name: "List files after Build"
         run: | 
-          ls -l
-          ls -l dist/
+            ls -l
+            ls -l dist/
       - name: "Configure AWS Credentials"
         uses: aws-actions/configure-aws-credentials@v4
         with:

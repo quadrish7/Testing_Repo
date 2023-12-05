@@ -19,7 +19,8 @@ jobs:
         run: |
           echo ${{ secrets.CF_DISTRIBUTIONS }} | while read i
           do
-          aws cloudfront get-distribution --id $i 
+          echo $i
+          # aws cloudfront get-distribution --id $i 
           done
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

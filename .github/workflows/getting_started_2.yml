@@ -8,10 +8,10 @@ jobs:
       - name: "Checkout repo"
         uses: actions/checkout@master
 
-      - name: "My Custom action Test"
-        uses: ./my-custom-action/
-        with:
-          name: "Quadri"
+      # - name: "My Custom action Test"
+      #   uses: ./my-custom-action
+      #   with:
+      #     name: "Quadri"
           
       - name: workflow commands logging messages
         run: |

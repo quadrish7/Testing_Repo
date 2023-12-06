@@ -1,0 +1,16 @@
+name: my-custom-action
+description: "This is my Custom Github Action"
+inputs:
+  name:
+    description: "Enter your name"
+    required: true
+    default: 'World'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+outputs:
+  name-entered:
+    description: "The entered value is ${{ inputs.name }}"
+
+

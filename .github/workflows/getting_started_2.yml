@@ -13,3 +13,8 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.version }}
+
+      - name: "My Custom action Test"
+        uses: ./my-custom-action
+        with:
+          name: "Quadri"

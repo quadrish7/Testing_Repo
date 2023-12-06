@@ -1,3 +1,5 @@
 FROM alpine:latest
 
-CMD ["echo","Hello","$1"]
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["echo"]

@@ -1,0 +1,15 @@
+name: "Getting Started 2 Github Actions"
+run-name: "Getting Started 2 with ${{ github.actor }}"
+on: workflow_dispatch
+jobs:
+  test-matrix:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        version: [14, 16, 18,]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: "Running on ${{ matrix.os }} for version ${{ matrix.version }}"
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.version }}

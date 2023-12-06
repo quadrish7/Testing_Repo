@@ -1,3 +1,3 @@
 FROM alpine:latest
 
-CMD ["echo"]
+CMD ["echo $1"]

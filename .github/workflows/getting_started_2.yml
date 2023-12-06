@@ -2,21 +2,14 @@ name: "Getting Started 2 Github Actions"
 run-name: "Getting Started 2 with ${{ github.actor }}"
 on: workflow_dispatch
 jobs:
-  test-matrix:
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest]
-        version: [14, 16, 18,]
-    runs-on: ${{ matrix.os }}
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - name: "Checking out repo"
+      - name: "Checkout repo"
         uses: actions/checkout@master
-      - name: "Running on ${{ matrix.os }} for version ${{ matrix.version }}"
-        uses: actions/setup-node@master
-        with:
-          node-version: ${{ matrix.version }}
 
       - name: "My Custom action Test"
-        uses: ./my-custom-action
+        uses: ./my-custom-action/
         with:
           name: "Quadri"
+    

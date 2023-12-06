@@ -11,8 +11,4 @@ runs:
   args:
     - ${{ inputs.name }}
 
-outputs:
-  name-entered:
-    description: "The entered value "
-
 

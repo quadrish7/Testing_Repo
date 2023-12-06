@@ -9,12 +9,14 @@ jobs:
         version: [14, 16, 18,]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: "Checking out repo"
+        uses: actions/checkout@master
       - name: "Running on ${{ matrix.os }} for version ${{ matrix.version }}"
         uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.version }}
 
       - name: "My Custom action Test"
-        uses: ./my-custom-action/
+        uses: ./my-custom-action
         with:
           name: "Quadri"

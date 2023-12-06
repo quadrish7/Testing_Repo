@@ -13,6 +13,6 @@ runs:
 
 outputs:
   name-entered:
-    description: "The entered value is ${{ inputs.name }}"
+    description: "The entered value "
 
 

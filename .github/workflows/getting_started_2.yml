@@ -15,6 +15,6 @@ jobs:
           node-version: ${{ matrix.version }}
 
       - name: "My Custom action Test"
-        uses: ./my-custom-action
+        uses: ./my-custom-action/
         with:
           name: "Quadri"

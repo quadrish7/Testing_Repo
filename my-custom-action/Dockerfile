@@ -1,3 +1,3 @@
 FROM alpine:latest
 
-CMD ["echo", "Hello"]
+CMD ["./entrypoint.sh"]

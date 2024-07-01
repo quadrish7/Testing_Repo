@@ -4,6 +4,7 @@ An Javascript tracker library for News Connect Global
 
 ## Implementation
 
+
 ```
 <script type="text/javascript">
 	ncg_data = window.ncg_data || {};
